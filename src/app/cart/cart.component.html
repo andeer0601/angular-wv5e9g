@@ -1,0 +1,43 @@
+<h2>Carrinho</h2>
+
+<h3>
+  <a routerLink='/shipping' >Formas de Envio</a>
+</h3>
+
+<div *ngIf='items.length > 0;else carrinho_vazio'>
+
+  <div class='cart-item' *ngFor='let item of items'>
+
+    <span>{{ item.name }}</span>
+    <span>{{ item.price | currency }}</span>
+
+  </div>
+  <div class='cart-total'>
+
+    <span>Total do Pedido</span>
+    <span>{{ total | currency }}</span>
+
+  </div>
+
+</div>
+<form *ngIf='items.length > 0' [formGroup]="checkoutForm" (ngSubmit)='onSubmit()'>
+
+  <div>
+    <label for="name">
+      Nome
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="address">
+      Endereço
+    </label>
+    <input id="address" type="text" formControlName="address">
+  </div>
+
+  <button class="button" type="submit">Purchase</button>
+
+</form>
+
+<ng-template #carrinho_vazio><p>Nenhum produto no carrinho</p></ng-template>

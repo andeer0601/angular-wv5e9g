@@ -1,11 +1,12 @@
 <div *ngIf='product;else no_product' >
-  <h2>Detalhes do Produto</h2>
+  <h2 #titulo>Detalhes do Produto</h2>
 
   <h3>Modelo: {{ product.name }}</h3>
   <h4>Preco: {{ product.price | currency }}</h4>
   <p *ngIf='product.description'>Descricao: {{ product.description }}</p>
 
+  <button (click)='addToCart(product)'>Comprar</button>
+
 </div>
 
 <ng-template #no_product>Produto Indisponivel</ng-template>
-
